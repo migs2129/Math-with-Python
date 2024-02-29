@@ -1,0 +1,27 @@
+from statistics import mean
+import math
+numlist = []
+def confirm():
+    print("Do you still want to continue? y/n: ")
+print("Mean / Standard Deviation Calculator")
+
+calculating = True
+while calculating == True:
+    try:
+        for i in range(5):
+            num = eval(input("Enter a Number: "))
+            numlist.append(num)
+        lst_avg = mean(numlist)
+        print(f"The mean of {numlist} is: {lst_avg:.2f}")
+
+        sd_dv= math.sqrt(((numlist[0]- lst_avg)**2 + (numlist[1] - lst_avg)**2 + (numlist[2] - lst_avg)**2 + (numlist[3] - lst_avg)**2 + (numlist[4] - lst_avg)**2)/4 )
+        print(f"The standard Deviation is {sd_dv:.2f}")
+    except:
+        print("Enter number only. Thank you!")
+    confirm()
+    choice = input().lower
+    if choice == "y":
+        pass
+    elif choice == "n":
+        print("System")
+        break
