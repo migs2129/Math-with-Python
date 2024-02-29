@@ -1,0 +1,44 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+# Organize the data into a pandas DataFrame
+data = {
+    'Year': [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4],
+    'Quarter': [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4],
+    'Memberships': [325, 289, 317, 384, 412, 376, 382, 445, 463, 425, 437, 489, 502, 453, 471, 515]
+}
+
+df = pd.DataFrame(data)
+
+# Create a time series plot
+plt.figure(figsize=(10, 6))
+for year in range(1, 5):
+    year_data = df[df['Year'] == year]
+    plt.plot(year_data['Quarter'], year_data['Memberships'], label=f'Year {year}')
+
+plt.title('Membership Data Over Time')
+plt.xlabel('Quarter')
+plt.ylabel('Memberships')
+plt.legend()
+plt.show()
+
+# Perform time series analysis using linear regression
+X = df[['Year', 'Quarter']]
+y = df['Memberships']
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Make a projection for the next year (Year 5)
+next_year_data = {
+    'Year': [5] * 4,
+    'Quarter': [1, 2, 3, 4]
+}
+
+next_year_df = pd.DataFrame(next_year_data)
+next_year_df['Predicted_Memberships'] = model.predict(next_year_df[['Year', 'Quarter']])
+
+# Display the projection for the next year
+print("Projected Memberships for Year 5:")
+print(next_year_df[['Quarter', 'Predicted_Memberships']])
