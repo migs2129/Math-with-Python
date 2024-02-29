@@ -1,0 +1,71 @@
+import math
+p_list = []
+s_list = []
+def menu ():
+    print(f"Welcome to Basic Electronics Calculation \n1. Calculate Voltage \n2. Calculate Current \n3. Calculate Resistance \n0. Exit")
+def menu_res():
+    print(f"Options \n1. Calculate using Volts and Ampere \n2. Calculate Series Resistance \n3. Calculate Parallel Resistance \n0. Back")
+def volt():
+    current = eval(input("Enter the Current in Amperes: "))
+    resistance = eval(input("Enter the Resistance in Ohms: "))
+    volt = current*resistance
+    return f"V = {volt:.2f} V"
+
+def current():
+    volt = eval(input("Enter the Voltage in Volts: "))
+    resistance = eval(input("Enter the Resistance in Ohms: "))
+    current = volt/resistance
+
+    return f"I = {current:.2f} A"
+def resistance():
+    volt = eval(input("Enter the Voltage in Volts: "))
+    current = eval(input("Enter the Current in Amperes: "))
+    resistance = volt/ current
+    return f"R = {resistance:.2f} Ohms"
+
+def parallel():
+    x = int(input("How many parallel resistance you want to compute? "))
+    for i in range(x):
+        i = eval(input("Enter Resistance: "))
+        i = 1/i
+        p_list.append(i)
+    resistance = sum(p_list)
+    resistance = 1/resistance
+    return f"R = {resistance:.2f} Ohms"
+def series():
+    x = int(input("How many series you want to compute? "))
+    for i in range(x):
+        i = eval(input("Enter Resistance: "))
+        s_list.append(i)
+    resistance = sum(s_list)
+    return f"R = {resistance:.2f} Ohms"
+
+program = True
+while program == True:
+    menu()
+    option = input("Choose from the options:")
+
+    if option == "1":
+        print(volt())
+    elif option == "2":
+        print(current())
+    elif option == "3":
+        while True:
+            menu_res()
+            choice = input("What do you want to compute? ")
+            if choice == "1":
+                print(resistance())
+            elif choice == "2":
+                print(series())
+            elif choice == "3":
+                print(parallel())
+            elif choice == "0":
+                print("Back kunwari")
+                break
+            else: 
+                print("INVALID INPUT")
+    elif option == "0":
+        print("System Exit...")
+        exit()
+    else:
+        print("INVALID INPUT")
