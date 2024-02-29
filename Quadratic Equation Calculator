@@ -1,0 +1,22 @@
+import math
+print("Square Root of quadratic equation")
+
+def quadratic_add(a,b,c):
+    step0 = 4*a*c
+    step1 = (b**2) - (step0)
+    step2 = math.sqrt(step1)
+    step3 = (-b + step2) / (2*a)
+    return f"x = {step3:.3f}"
+def quadratic_sub(a,b,c):
+    step0 = 4*a*c
+    step1 = (b**2) - (step0)
+    step2 = math.sqrt(step1)
+    step3 = (-b - step2) / (2*a)
+    return f"x = {step3:.3f}"
+print("Enter the values of your quadratic equation")
+
+try:
+    a,b,c = eval(input("""Enter the "a": """)), eval(input("""Enter the "b": """)), eval(input("""Enter the "c": """))
+    print(f"The square roots are {quadratic_add(a,b,c)} and {quadratic_sub(a,b,c)} ")
+except:
+    print("0 Real Solution")
